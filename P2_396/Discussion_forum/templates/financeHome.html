@@ -1,0 +1,107 @@
+<head>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" crossorigin="anonymous"0>
+    
+</head>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color:#343a40;">
+    <a class="navbar-brand" href="/">Back</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="listAsset"><FONT COLOR="White">List New Asset</FONT></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="tradeAssets"><FONT COLOR="White">Trade Assets</FONT></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="newAgent"><FONT COLOR="White">New Agent</FONT></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="agentQuery"><FONT COLOR="White">Query Agent</FONT></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="assetQuery"><FONT COLOR="White">Query Asset</FONT></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="goNewLoan"><FONT COLOR="White">Make New Loan</FONT></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="viewLoans"><FONT COLOR="White">View Loans</FONT></a>
+        </li>
+      </ul>
+    </div>
+</nav>
+
+<h3>
+    You have ${{available}}
+</h3>
+
+<form action="{% url 'changeFunds'%}" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" href="finance" class="btn btn-success" value="Submit">
+</form>
+
+<div class="form-group">
+    {% for message in messages %}
+    <div class="alert alert-danger" role="alert">
+        {{message}}
+    </div>
+    {% endfor %}
+</div>
+
+
+<form action="{% url 'seeTransactionOnDate'%}" method="POST">
+    {% csrf_token %}
+    {{dateForm.as_p}}
+    <input type="submit" href="finance" class="btn btn-success" value="Submit">
+</form>
+
+<h3>
+    Transactions:
+</h3>
+<h2>
+    Stocks:
+</h2>
+{%for stock in stocks %}
+<div class="card">
+    {{stock}}
+</div>
+{%endfor%}
+<h2>
+    Properties:
+</h2>
+{%for property in properties %}
+<div class="card">
+    {{property}}
+</div>
+{%endfor%}
+<h2>
+    Bonds:
+</h2>
+{%for bond in bonds %}
+<div class="card">
+    {{bond}}
+</div>
+{%endfor%}
+
+<h3>
+    Find Gain
+    </h3>
+
+<form action="{% url 'queryGain'%}" method="POST">
+    {% csrf_token %}
+    {{dateForm.as_p}}
+    <input type="submit" href="queryGain" class="btn btn-success" value="Submit">
+</form>
+
+{% if dispGain %}
+<h2>
+    Gain: {{gain}}
+</h2>
+{%endif%}

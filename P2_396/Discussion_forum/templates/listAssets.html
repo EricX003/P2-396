@@ -1,0 +1,39 @@
+<head>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" crossorigin="anonymous"0>
+    
+</head>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color:#343a40;">
+    <a class="navbar-brand" href="{% url 'goFinance'%}">Go back</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+</nav>
+
+<form action="{% url 'newStock'%}" method="POST">
+    {% csrf_token %}
+    {{stock_form.as_p}}
+    <input type="submit" href="" class="btn btn-success" value="Submit">
+</form>
+
+<form action="{% url 'newProperty'%}" method="POST">
+    {% csrf_token %}
+    {{property_form.as_p}}
+    <input type="submit" href="" class="btn btn-success" value="Submit">
+</form>
+
+<form action="{% url 'newBond'%}" method="POST">
+    {% csrf_token %}
+    {{bond_form.as_p}}
+    <input type="submit" href="" class="btn btn-success" value="Submit">
+</form>
+
+<div class="form-group">
+    {% for message in messages %}
+    <div class="alert alert-danger" role="alert">
+        {{message}}
+    </div>
+    {% endfor %}
+</div>

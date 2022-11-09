@@ -1,0 +1,57 @@
+<head>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" crossorigin="anonymous"0>
+    
+</head>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color:#343a40;">
+    <a class="navbar-brand" href="/finance">Back</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+</nav>
+
+<form action="{% url 'goStockQuery'%}" method="POST">
+    {% csrf_token %}
+    {{stockForm.as_p}}
+    <input type="submit" href="madeStock" class="btn btn-success" value="Submit">
+</form>
+
+{%if stockMade%}
+    <div class="card">
+        {{stock}}
+    </div>
+{%endif%}
+
+<form action="{% url 'goBondQuery'%}" method="POST">
+    {% csrf_token %}
+    {{bondForm.as_p}}
+    <input type="submit" href="madeBond" class="btn btn-success" value="Submit">
+</form>
+
+{%if bondMade%}
+    <div class="card">
+        {{bond}}
+    </div>
+{%endif%}
+
+<form action="{% url 'goPropertyQuery'%}" method="POST">
+    {% csrf_token %}
+    {{propertyForm.as_p}}
+    <input type="submit" href="madeProperty" class="btn btn-success" value="Submit">
+</form>
+
+{%if propertyMade%}
+    <div class="card">
+        {{property}}
+    </div>
+{%endif%}
+
+<div class="form-group">
+    {% for message in messages %}
+    <div class="alert alert-danger" role="alert">
+        {{message}}
+    </div>
+    {% endfor %}
+</div>
